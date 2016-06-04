@@ -1,0 +1,49 @@
+
+
+/*
+ * Use your wiimote as a simple mouse
+ * No additional hardware or motion plus required
+ * KEY MAPPING:
+ * Left Mouse Button : A
+ * Right Mouse Button : Home
+ * Middle Mouse Button: Button 1
+ * 
+ * To navigate cursor, hold B + any of the following
+ * Cursor Up: Tilt Up
+ * Cursor Down: Tilt Down
+ * Cursor Left: Roll Left
+ * Cursor Right: Roll Right
+ *
+ * Keyboard Arrow Keys = Up,Down, Left, Right
+*/
+
+
+if (Wiimote1.B = true)
+   if (Wiimote1.gx > 0.3) then
+      mouse.DirectInputX = mouse.DirectInputX - (10 * Wiimote1.gx)
+   endif
+
+   if (Wiimote1.gx < -0.3) then
+      mouse.DirectInputX = mouse.DirectInputX - (10 * Wiimote1.gx)
+   endif
+
+   if(Wiimote1.Pitch < 0) then
+      mouse.DirectInputY += 5*Smooth(Wiimote1.gy,2,0.10)
+   endif
+
+   if(Wiimote1.Pitch > 0) then
+      mouse.DirectInputY -= 5*Smooth(Wiimote1.gy,2,0.10)
+   endif
+
+endif
+
+
+Mouse.LeftButton  = Wiimote1.A
+Mouse.RightButton = Wiimote1.Home
+Mouse.WheelUp     = Wiimote1.Plus
+Mouse.WheelDown   = Wiimote1.Minus
+Mouse.MiddleButton= Wiimote1.One
+Key.Up            = Wiimote1.Up
+Key.Left          = Wiimote1.Left
+Key.Right         = Wiimote1.Right
+Key.Down          = Wiimote1.Down
